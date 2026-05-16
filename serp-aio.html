@@ -1,0 +1,2727 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta name="robots" content="noindex, nofollow"> 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Haftpflichtversicherung - Google Suche</title>
+  <style>
+    :root {
+      --text: #1f1f1f;
+      --muted: #5f6368;
+      --muted-2: #70757a;
+      --blue: #1a0dab;
+      --google-blue: #0b57d0;
+      --line: #dadce0;
+      --soft: #f7f8fa;
+      --soft-2: #f1f3f4;
+      --chip: #e9ebf0;
+      --highlight: #d3e3fd;
+      --green: #188038;
+      --shadow: 0 2px 8px rgba(60, 64, 67, .18), 0 1px 2px rgba(60, 64, 67, .1);
+      --radius: 22px;
+      font-family: Arial, sans-serif;
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover,
+    .result-title:hover {
+      text-decoration: underline;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -48px;
+      z-index: 100;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    .page-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #ebebeb;
+    }
+
+    .header-row {
+      min-height: 76px;
+      display: grid;
+      grid-template-columns: 150px minmax(280px, 690px) 1fr auto;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 26px 6px;
+    }
+
+    .google-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      font-size: 30px;
+      line-height: 1;
+      font-family: Arial, sans-serif;
+      letter-spacing: -1.5px;
+      user-select: none;
+      text-decoration: none;
+      width: max-content;
+    }
+
+    .google-logo span:nth-child(1),
+    .google-logo span:nth-child(4) {
+      color: #4285f4;
+    }
+
+    .google-logo span:nth-child(2),
+    .google-logo span:nth-child(6) {
+      color: #ea4335;
+    }
+
+    .google-logo span:nth-child(3) {
+      color: #fbbc05;
+    }
+
+    .google-logo span:nth-child(5) {
+      color: #34a853;
+    }
+
+    .search-form {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 46px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      padding: 0 12px 0 20px;
+    }
+
+    .search-form.is-active {
+      border-color: #dfe1e5;
+      box-shadow: 0 1px 6px rgba(32, 33, 36, .28);
+    }
+
+    .search-form input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      font-size: 16px;
+      background: transparent;
+      color: var(--text);
+    }
+
+    .search-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--muted);
+    }
+
+    .icon-button {
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      position: relative;
+    }
+
+    .icon-button:hover {
+      background: var(--soft-2);
+    }
+
+    .icon-button svg {
+      width: 21px;
+      height: 21px;
+      fill: currentColor;
+    }
+
+    .search-divider {
+      width: 1px;
+      height: 28px;
+      background: #dadce0;
+      margin: 0 2px 0 4px;
+    }
+
+    .suggestions {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50px;
+      z-index: 30;
+      border-radius: 0 0 24px 24px;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(32, 33, 36, .28);
+      padding: 8px 0 12px;
+      overflow: hidden;
+    }
+
+    .search-form.is-active .suggestions {
+      display: block;
+    }
+
+    .suggestions button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 38px;
+      border: 0;
+      background: transparent;
+      padding: 0 18px;
+      text-align: left;
+      color: var(--text);
+    }
+
+    .suggestions button:hover {
+      background: var(--soft-2);
+    }
+
+    .suggestion-action {
+      margin-left: auto;
+      color: var(--google-blue);
+      font-size: 13px;
+    }
+
+    .header-spacer {
+      min-width: 10px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .account-button {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: #7e57c2;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .tabs-wrap {
+      display: flex;
+      align-items: center;
+      margin-left: 176px;
+      max-width: 860px;
+      gap: 4px;
+      padding: 0 0 0 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tabs-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 48px;
+      border: 0;
+      background: transparent;
+      color: var(--muted-2);
+      padding: 0 12px;
+      white-space: nowrap;
+    }
+
+    .tab-button.is-active {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .tab-button.is-active::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 0;
+      height: 3px;
+      background: var(--text);
+      border-radius: 3px 3px 0 0;
+    }
+
+    .filters-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      max-width: 1120px;
+      margin-left: 176px;
+      padding: 10px 26px 0 0;
+      color: var(--muted);
+    }
+
+    .filter-button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: var(--muted);
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      min-height: 34px;
+    }
+
+    .filter-button:hover,
+    .filter-button.is-open {
+      background: var(--soft-2);
+    }
+
+    .page-shell {
+      max-width: 1190px;
+      margin-left: 176px;
+      padding: 14px 26px 60px 0;
+    }
+
+    .stats-line {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 4px 0 14px;
+    }
+
+    .ai-overview {
+      position: relative;
+      margin-bottom: 36px;
+    }
+
+    .ai-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      max-width: 632px;
+      margin-bottom: 18px;
+    }
+
+    .ai-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .spark {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 auto;
+      fill: #3186ff;
+    }
+
+    .ai-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 632px) 428px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .ai-main {
+      min-width: 0;
+    }
+
+    .ai-answer {
+      position: relative;
+      overflow: hidden;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .ai-answer-inner {
+      overflow: hidden;
+      transition: max-height .34s ease;
+      max-height: 1800px;
+    }
+
+    .ai-answer:not(.is-open) .ai-answer-inner {
+      max-height: 384px;
+    }
+
+    .ai-answer:not(.is-open)::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 90px;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 78%);
+    }
+
+    .ai-answer p {
+      margin: 0 0 16px;
+    }
+
+    .ai-answer h3 {
+      margin: 22px 0 10px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .ai-answer ul {
+      margin: 0 0 18px 0;
+      padding-left: 22px;
+    }
+
+    .ai-answer li {
+      margin: 0 0 10px;
+    }
+
+    mark {
+      border-radius: 4px;
+      padding: 1px 3px;
+      background: var(--highlight);
+      color: inherit;
+    }
+
+    .source-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      height: 20px;
+      max-width: 260px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--chip);
+      color: #56595e;
+      font-size: 11px;
+      line-height: 14px;
+      padding: 3px 7px;
+      vertical-align: text-top;
+      white-space: nowrap;
+    }
+
+    a.source-chip {
+      color: #56595e;
+      text-decoration: none;
+    }
+
+    a.source-chip:hover {
+      background: #dde3ea;
+      text-decoration: none;
+    }
+
+    .source-chip-logo {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #fff;
+      flex: 0 0 auto;
+    }
+
+    .favicon-dot,
+    .stack-dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .favicon-dot {
+      width: 13px;
+      height: 13px;
+    }
+
+    .stack-dot {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #fff;
+      margin-left: -5px;
+    }
+
+    .stack-dot:first-child {
+      margin-left: 0;
+    }
+
+    .tone-1 {
+      background: #f4511e;
+    }
+
+    .tone-2 {
+      background: #0b57d0;
+    }
+
+    .tone-3 {
+      background: #188038;
+    }
+
+    .tone-4 {
+      background: #6a1b9a;
+    }
+
+    .tone-5 {
+      background: #5f6368;
+    }
+
+    .expand-zone {
+      position: relative;
+      z-index: 2;
+      margin: -4px 0 18px;
+    }
+
+    .pill-button {
+      min-height: 40px;
+      border: 1px solid #d3e3fd;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--google-blue);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px;
+    }
+
+    .pill-button:hover {
+      background: #f8fbff;
+    }
+
+    .expand-button {
+      width: 100%;
+    }
+
+    .expand-button svg {
+      transition: transform .24s ease;
+    }
+
+    .ai-answer.is-open+.expand-zone .expand-button svg {
+      transform: rotate(180deg);
+    }
+
+    .ai-note {
+      margin: 16px 0 0;
+      color: #545d7e;
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    .ai-actions {
+      display: flex;
+      gap: 14px;
+      margin: 18px 0 16px 6px;
+    }
+
+    .ask-box {
+      width: min(664px, calc(100% + 32px));
+      min-height: 112px;
+      margin-left: -16px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #f8f9fa;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 8px;
+      align-items: end;
+      transition: background .2s, box-shadow .2s, border-color .2s;
+    }
+
+    .ask-box.is-focus {
+      background: #fff;
+      border-color: #d3e3fd;
+      box-shadow: 0 2px 8px rgba(60, 64, 67, .12);
+    }
+
+    .ask-box textarea {
+      border: 0;
+      outline: 0;
+      background: transparent;
+      resize: none;
+      min-height: 28px;
+      max-height: 160px;
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--text);
+    }
+
+    .ask-box textarea::placeholder {
+      color: #65708a;
+    }
+
+    .send-button {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--google-blue);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .send-button:disabled {
+      opacity: .35;
+      cursor: default;
+    }
+
+    /* AIO zusätzliche Quellen Grauer Kasten */
+
+    .source-panel {
+      position: sticky;
+      top: 140px;
+      background: var(--soft);
+      border-radius: 20px;
+      padding: 16px;
+      width: 100%;
+    }
+
+    .source-panel-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      margin-bottom: 4px;
+      min-height: 28px;
+    }
+
+    .favicon-stack {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .source-card {
+      position: relative;
+      border-bottom: 1px solid #dee1e3;
+      transition: background .18s, outline .18s;
+    }
+
+    .source-card.is-extra {
+      display: none;
+    }
+
+    .source-panel.is-open .source-card.is-extra {
+      display: block;
+    }
+
+    .source-card.is-active {
+      outline: 2px solid #d3e3fd;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .source-content {
+      display: block;
+      color: inherit;
+      padding: 12px 34px 14px 4px;
+    }
+
+    .source-title {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .source-desc {
+      color: #3c4043;
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    .source-meta {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #111;
+      font-size: 12px;
+      line-height: 16px;
+      margin-top: 14px;
+    }
+
+    .card-menu-button {
+      position: absolute;
+      right: 0;
+      bottom: 12px;
+      width: 32px;
+      height: 32px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--muted);
+      font-size: 20px;
+    }
+
+    .card-menu-button:hover {
+      background: var(--soft-2);
+    }
+
+    .source-more {
+      width: 100%;
+      margin-top: 14px;
+      border: 0;
+      background: var(--chip);
+      color: var(--text);
+    }
+
+    .section-label {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 22px 0 10px;
+    }
+
+    .result-card {
+      max-width: 652px;
+      margin: 0 0 28px;
+      position: relative;
+    }
+
+    .result-card.is-ad {
+      border-radius: 16px;
+      border: 1px solid #edf0f2;
+      padding: 14px 44px 14px 14px;
+      background: #fff;
+    }
+
+    .result-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #3c4043;
+      margin-bottom: 6px;
+      min-width: 0;
+    }
+
+    .result-logo {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      overflow: hidden;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .result-logo img {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .result-logo img:not([src]),
+    .result-logo img[src=""] {
+      display: none;
+    }
+
+    .result-logo-fallback {
+      position: absolute;
+      inset: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-site {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .result-url {
+      color: #4d5156;
+      font-size: 12px;
+      line-height: 16px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 520px;
+    }
+
+    .result-title {
+      display: inline-block;
+      color: var(--blue);
+      font-size: 20px;
+      line-height: 26px;
+      margin-bottom: 4px;
+    }
+
+    .result-title:visited {
+      color: #681da8;
+    }
+
+    .result-snippet {
+      color: #4d5156;
+      font-size: 14px;
+      line-height: 22px;
+      margin: 0;
+    }
+
+    .result-snippet em {
+      color: #5f6368;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .sitelinks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 7px;
+      font-size: 14px;
+    }
+
+    .result-menu {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .ad-center-button {
+      margin: 0 0 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      border: 0;
+      background: transparent;
+      padding: 0;
+    }
+
+    .people-also-ask {
+      max-width: 652px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 6px 0 28px;
+    }
+
+    .paa-title {
+      font-size: 22px;
+      line-height: 28px;
+      font-weight: 400;
+      margin: 14px 0;
+    }
+
+    .sponsored-results {
+      max-width: 652px;
+      margin-bottom: 28px;
+    }
+
+    .sponsored-results .paa-title {
+      margin-bottom: 16px;
+    }
+
+    .sponsored-content {
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+
+    .sponsored-results.is-collapsed .sponsored-content {
+      display: none;
+    }
+
+    .sponsored-toggle-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 22px 0 4px;
+    }
+
+    .sponsored-toggle-wrap::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      border-top: 1px solid var(--line);
+    }
+
+    .sponsored-toggle {
+      position: relative;
+      z-index: 1;
+      min-width: min(336px, 100%);
+      min-height: 38px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 8px 18px;
+      font-weight: 500;
+    }
+
+    .sponsored-toggle:hover {
+      background: var(--soft-2);
+    }
+
+    .sponsored-toggle svg {
+      width: 18px;
+      height: 18px;
+      transition: transform .2s ease;
+    }
+
+    .sponsored-results.is-collapsed .sponsored-toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .question-item {
+      border-top: 1px solid var(--line);
+    }
+
+    .question-button {
+      width: 100%;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      color: var(--text);
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .question-button svg {
+      transition: transform .2s ease;
+    }
+
+    .question-item.is-open .question-button svg {
+      transform: rotate(180deg);
+    }
+
+    .question-answer {
+      display: none;
+      padding: 0 0 16px;
+      color: #3c4043;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .question-item.is-open .question-answer {
+      display: block;
+    }
+
+    .inline-source {
+      display: block;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .translate-box {
+      border-left: 3px solid #e0e0e0;
+      padding-left: 12px;
+      margin-top: 8px;
+    }
+
+    .original-text {
+      display: none;
+    }
+
+    .translation.is-original .translated-text {
+      display: none;
+    }
+
+    .translation.is-original .original-text {
+      display: block;
+    }
+
+    .scholar-box {
+      max-width: 652px;
+      border-left: 3px solid #e8eaed;
+      padding-left: 14px;
+      margin-bottom: 28px;
+    }
+
+    .scholar-title {
+      font-size: 20px;
+      line-height: 26px;
+      margin-bottom: 8px;
+    }
+
+    .scholar-entry {
+      margin: 8px 0;
+      color: #3c4043;
+    }
+
+    .rating-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      color: #4d5156;
+      font-size: 14px;
+    }
+
+    .stars {
+      color: #fbbc04;
+      letter-spacing: 1px;
+    }
+
+    .pagination {
+      max-width: 652px;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      gap: 8px;
+      margin: 34px 0 26px;
+      color: var(--google-blue);
+      user-select: none;
+    }
+
+    .page-link {
+      min-width: 28px;
+      border: 0;
+      background: transparent;
+      color: var(--google-blue);
+      padding: 4px 5px;
+      border-radius: 6px;
+    }
+
+    .page-link.is-active {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .page-link:hover {
+      background: var(--soft-2);
+    }
+
+    .footer {
+      background: #f2f2f2;
+      color: #70757a;
+      border-top: 1px solid #dadce0;
+      padding: 14px 0 26px;
+    }
+
+    .footer-inner {
+      max-width: 1050px;
+      margin-left: 176px;
+      padding-right: 26px;
+    }
+
+    .footer-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 8px 0;
+    }
+
+    .footer a,
+    .footer button {
+      color: #70757a;
+      border: 0;
+      background: transparent;
+      padding: 0;
+    }
+
+    .footer a:hover,
+    .footer button:hover {
+      color: var(--text);
+    }
+
+    .popover {
+      position: fixed;
+      z-index: 100;
+      min-width: 210px;
+      max-width: 330px;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 6px 24px rgba(60, 64, 67, .24);
+      padding: 8px;
+      color: var(--text);
+    }
+
+    .popover[hidden] {
+      display: none;
+    }
+
+    .popover a,
+    .popover button,
+    .popover .popover-row {
+      width: 100%;
+      min-height: 38px;
+      padding: 8px 10px;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .popover a:hover,
+    .popover button:hover {
+      background: var(--soft-2);
+      text-decoration: none;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 74px);
+      gap: 8px;
+      padding: 8px;
+    }
+
+    .app-tile {
+      min-height: 70px !important;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center !important;
+      font-size: 12px;
+    }
+
+    .app-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    dialog {
+      border: 0;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(60, 64, 67, .32);
+      padding: 0;
+      width: min(430px, calc(100vw - 32px));
+      color: var(--text);
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, .28);
+    }
+
+    .dialog-inner {
+      padding: 22px;
+    }
+
+    .dialog-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .dialog-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 26px;
+      font-weight: 400;
+    }
+
+    .dialog-close {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      font-size: 24px;
+      color: var(--muted);
+    }
+
+    .dialog-close:hover {
+      background: var(--soft-2);
+    }
+
+    .share-grid {
+      display: grid;
+      gap: 8px;
+    }
+
+    .share-grid a,
+    .share-grid button {
+      min-height: 42px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--soft-2);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    .share-grid a:hover,
+    .share-grid button:hover {
+      background: #e8eaed;
+      text-decoration: none;
+    }
+
+    .feedback-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .feedback-grid textarea {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      outline: 0;
+    }
+
+    .primary-button {
+      min-height: 40px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--google-blue);
+      color: #fff;
+      padding: 9px 16px;
+      justify-self: end;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 110;
+      transform: translateX(-50%) translateY(18px);
+      opacity: 0;
+      pointer-events: none;
+      background: #323232;
+      color: #fff;
+      border-radius: 12px;
+      padding: 12px 18px;
+      transition: opacity .2s ease, transform .2s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 1100px) {
+      .header-row {
+        grid-template-columns: auto minmax(260px, 1fr) auto;
+      }
+
+      .header-spacer {
+        display: none;
+      }
+
+      .tabs-wrap,
+      .filters-row,
+      .page-shell,
+      .footer-inner {
+        margin-left: 26px;
+      }
+
+      .ai-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+        gap: 24px;
+      }
+
+      .source-panel {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-header {
+        position: static;
+      }
+
+      .header-row {
+        grid-template-columns: 1fr auto;
+        padding: 12px 14px 0;
+      }
+
+      .google-logo {
+        grid-column: 1 / -1;
+        font-size: 28px;
+      }
+
+      .search-form {
+        grid-column: 1 / -1;
+        order: 2;
+      }
+
+      .top-actions {
+        position: absolute;
+        top: 10px;
+        right: 14px;
+      }
+
+      .tabs-wrap,
+      .filters-row,
+      .page-shell,
+      .footer-inner {
+        margin-left: 14px;
+        padding-right: 14px;
+      }
+
+      .filters-row {
+        flex-wrap: wrap;
+      }
+
+      .ai-head {
+        max-width: none;
+      }
+
+      .ai-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .ask-box {
+        width: 100%;
+        margin-left: 0;
+        grid-template-columns: 1fr auto;
+      }
+
+      .send-button {
+        grid-column: 2;
+      }
+
+      .result-title {
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      .source-panel {
+        position: static;
+        max-width: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .ai-answer-inner,
+      .expand-button svg,
+      .question-button svg,
+      .toast,
+      .ask-box {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Zu den Hauptinhalten springen</a>
+
+  <header class="page-header">
+    <div class="header-row">
+      <a href="index_aio.html" class="google-logo"
+        aria-label="Google Startseite"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></a>
+
+      <form class="search-form" data-search-form role="search" action="serp-aio.html" method="get">
+        <input id="search-input" name="q" value="private haftpflichtversicherung" aria-label="Suche"
+          autocomplete="off">
+        <div class="search-actions">
+          <button type="button" class="icon-button" data-clear-search aria-label="Löschen">×</button>
+          <span class="search-divider" aria-hidden="true"></span>
+          <button type="button" class="icon-button" data-toast="Sprachsuche ist in dieser HTML-Version nicht verbunden"
+            aria-label="Microphone"><svg viewBox="0 -960 960 960" aria-hidden="true">
+              <path
+                d="M480-400q-50 0-85-35t-35-85v-240q0-50 35-85t85-35q50 0 85 35t35 85v240q0 50-35 85t-85 35Zm-40 280v-123q-104-14-172-93t-68-184h80q0 83 58.5 141.5T480-320q83 0 141.5-58.5T680-520h80q0 105-68 184t-172 93v123h-80Z">
+              </path>
+            </svg></button>
+          <button type="button" class="icon-button" data-toast="Bildersuche ist in dieser HTML-Version nicht verbunden"
+            aria-label="Bildersuche"><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M9 3 7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-3.17L15 3H9Zm3 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z">
+              </path>
+            </svg></button>
+          <button type="submit" class="icon-button" aria-label="Suchen"><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M9.5 3a6.5 6.5 0 0 1 5.16 10.45l5.45 5.44-1.42 1.42-5.44-5.45A6.5 6.5 0 1 1 9.5 3Zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Z">
+              </path>
+            </svg></button>
+        </div>
+        <div class="suggestions" aria-label="Suchvorschläge">
+          <button type="button" data-suggestion="Haftpflichtversicherung"><span>↻</span><span>Haftpflichtversicherung
+              </span><span class="suggestion-action">Löschen</span></button>
+          <button type="button" data-suggestion="Haftpflichtversicherung Kosten"><span>🔎</span><span>Haftpflichtversicherung Kosten
+              </span><span class="suggestion-action">Mehr</span></button>
+          <button type="button" data-suggestion="Haftpflicht für mich"><span>🔎</span><span>Haftpflicht für mich
+              </span><span class="suggestion-action">Mehr</span></button>
+          <button type="button" data-suggestion="Haftpflichtversicherung vergleichen"><span>🔎</span><span>Haftpflichtversicherung vergleichen
+              </span><span class="suggestion-action">Mehr</span></button>
+          <button type="button" data-modal="report-suggestions"><span>⚠</span><span>Unangemessene Vervollständigungen
+              melden</span></button>
+        </div>
+      </form>
+
+      <div class="header-spacer"></div>
+      <div class="top-actions">
+        <button type="button" class="icon-button" data-popover="apps" aria-label="Google-Apps"><svg viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path
+              d="M4 4h4v4H4V4Zm6 0h4v4h-4V4Zm6 0h4v4h-4V4ZM4 10h4v4H4v-4Zm6 0h4v4h-4v-4Zm6 0h4v4h-4v-4ZM4 16h4v4H4v-4Zm6 0h4v4h-4v-4Zm6 0h4v4h-4v-4Z">
+            </path>
+          </svg></button>
+        <button type="button" class="account-button" data-popover="account"
+          aria-label="Google-Konto Vanessa Juric">V</button>
+      </div>
+    </div>
+
+    <nav class="tabs-wrap" aria-label="Suchkategorien">
+      <button class="tab-button" type="button" data-tab="KI-Modus">✨ KI-Modus</button>
+      <button class="tab-button is-active" type="button" data-tab="Alle">Alle</button>
+      <button class="tab-button" type="button" data-tab="Bilder">Bilder</button>
+      <button class="tab-button" type="button" data-tab="Videos">Videos</button>
+      <button class="tab-button" type="button" data-tab="Kurze Videos">Kurze Videos</button>
+      <button class="tab-button" type="button" data-tab="News">News</button>
+      <button class="tab-button" type="button" data-tab="Bücher">Bücher</button>
+      <button class="tab-button" type="button" data-popover="more-tabs">Mehr ▾</button>
+      <button class="tab-button" type="button" data-tab="Web">Web</button>
+      <button class="tab-button" type="button" data-tab="Finanzen">Finanzen</button>
+    </nav>
+
+    <!-- unnötig und kann ggf. gelöscht werden -->
+    <!-- 
+    <div class="filters-row">
+      <button class="filter-button" type="button" data-popover="language-filter">Beliebige Sprache ▾</button>
+      <button class="filter-button" type="button" data-popover="time-filter">Beliebige Zeit ▾</button>
+      <button class="filter-button" type="button" data-popover="result-filter">Alle Ergebnisse ▾</button>
+      <button class="filter-button" type="button" data-modal="advanced-search">Erweiterte Suche</button>
+    </div>
+  </header>
+-->
+
+    <main id="main-content" class="page-shell">
+      <div class="stats-line">Ungefähr 2.180.000 Ergebnisse (0,32&nbsp;Sek.)
+        <!--<span aria-hidden="true"> · </span><span>Auswählen: Strg&nbsp;+&nbsp;Umschalttaste&nbsp;+&nbsp;X</span> -->
+      </div>
+
+      <section class="ai-overview" data-ai-overview aria-labelledby="ai-overview-title">
+        <div class="ai-head">
+          <div class="ai-title" id="ai-overview-title"><svg class="spark" viewBox="0 0 471 471" aria-hidden="true">
+              <path
+                d="M235.5 471C235.5 438.4 229.2 407.8 216.7 379.2C204.5 350.5 187.8 325.6 166.6 304.4C145.4 283.2 120.5 266.5 91.8 254.3C63.2 241.8 32.6 235.5 0 235.5C32.6 235.5 63.2 229.4 91.8 217.2C120.5 204.7 145.4 187.8 166.6 166.6C187.8 145.4 204.5 120.5 216.7 91.8C229.2 63.2 235.5 32.6 235.5 0C235.5 32.6 241.6 63.2 253.8 91.8C266.3 120.5 283.2 145.4 304.4 166.6C325.6 187.8 350.5 204.7 379.2 217.2C407.8 229.4 438.4 235.5 471 235.5C438.4 235.5 407.8 241.8 379.2 254.3C350.5 266.5 325.6 283.2 304.4 304.4C283.2 325.6 266.3 350.5 253.8 379.2C241.6 407.8 235.5 438.4 235.5 471Z">
+              </path>
+            </svg><span>Übersicht mit KI</span></div>
+          <button class="icon-button" type="button" data-popover="ai-main-menu" aria-label="Mehr">⋮</button>
+        </div>
+
+        <div class="ai-grid">
+          <div class="ai-main">
+            <div class="ai-answer" data-ai-answer>
+              <div class="ai-answer-inner">
+                <p>Die private Haftpflichtversicherung <mark>ist eine der wichtigsten freiwilligen Versicherungen in
+                    Deutschland. Sie schützt Sie und Ihre Familie vor existenzbedrohenden finanziellen Schäden, die Sie
+                    Dritten (Personen-, Sach- oder Vermögensschäden) unabsichtlich zufügen.</mark>
+                  Sie reguliert berechtigte Ansprüche und wehrt unberechtigte Forderungen ab. Gute Tarife kosten ca.
+                  40–65 € jährlich.
+                  <a class="source-chip" href="https://www.check24.de/haftpflichtversicherung/" target="_blank"
+                    rel="noopener"><img class="source-chip-logo" src="logos/check24_logo.png" alt=""><span>Check24 +3</span></a></p>
+
+                <!-- <h3>Was Logfiles über das Nutzerverhalten verraten</h3>
+              <p>Logfiles zeichnen detailliert auf, wie Besucher und Bots mit der Website interagieren: <button class="source-chip" type="button" data-source-jump="121"><span class="favicon-dot tone-1">1</span><span>121WATT</span></button></p>
+              -->
+                <ul>
+                  <li><strong>Schutzfunktion:</strong> Übernimmt Kosten für Personen-, Sach- und Vermögensschäden, die
+                    man verursacht. <a class="source-chip"
+                      href="https://www.huk.de/haus-haftung-recht/haftpflichtversicherung/private-haftpflichtversicherung.html"
+                      target="_blank" rel="noopener"><img class="source-chip-logo" src="logos/huk_logo.png"
+                        alt=""><span>HUK-COBURG</span></a></li>
+                  <li><strong>Versicherte Personen:</strong> Oft sind Familienmitglieder, Kinder (im Rahmen der
+                    gesetzlichen Bestimmungen) und teilweise Partner im Haushalt mitversichert. <a class="source-chip"
+                      href="https://www.ruv.de/lp/haftpflicht/haftpflichtversicherung" target="_blank"
+                      rel="noopener"><img class="source-chip-logo" src="logos/logo-ruv.png" alt=""><span>R+V</span></a></li>
+                  <li><strong>Wichtige Zusatzleistungen:</strong> Schlüsselverlust, Mietsachschäden und Schäden an
+                    geliehenen Sachen sollten abgedeckt sein. <a class="source-chip"
+                      href="https://www.wuerttembergische.de/existenz/private-haftpflichtversicherung/" target="_blank"
+                      rel="noopener"><img class="source-chip-logo" src="logos/Württembergische_logo.png"
+                        alt=""><span>Württembergische</span></a></li>
+                  <!--- <li><strong>Technisches Verhalten:</strong> Aufdeckung von 404-Fehlern (Seite nicht gefunden) oder 500-Fehlern (Serverfehler), die zu einer schlechten User Experience führen.</li>
+                <li><strong>Bot-Aktivitäten:</strong> Analyse, welche Seiten von Suchmaschinen-Crawlern besucht werden.-->
+                </ul>
+
+                <h3>Top-Empfehlungen im Überblick (2026)</h3>
+                <ul>
+                  <li><strong>R+V Versicherung:</strong> Siegel "Familienfreundlichste Versicherung", Top-Bewertungen
+                    für Berufsunfähigkeits- (Finanztest "Sehr gut") und Privathaftpflichtversicherung. <a
+                      class="source-chip" href="https://www.ruv.de/lp/haftpflicht/haftpflichtversicherung"
+                      target="_blank" rel="noopener"><img class="source-chip-logo" src="logos/logo-ruv.png"
+                        alt=""><span>R+V</span></a></li>
+                  <li><strong>Axa & Gothaer:</strong> Flexibles Baukastensystem (S, M, L) mit optionalen Bausteinen und
+                    hohem Deckungsbeitrag. <a class="source-chip"
+                      href="https://www.axa.de/private-haftpflichtversicherung" target="_blank" rel="noopener"><img
+                        class="source-chip-logo" src="logos/axa_logo.png" alt=""><span>AXA</span></a></li>
+                  <li><strong>Württembergische:</strong>Solide und leistungsstarke Absicherung besonders im
+                    Premium-Schutz mit bis zu 50 Mio. € Absicherung. <a class="source-chip"
+                      href="https://www.wuerttembergische.de/existenz/private-haftpflichtversicherung/" target="_blank"
+                      rel="noopener"><img class="source-chip-logo" src="logos/Württembergische_logo.png"
+                        alt=""><span>Württembergische</span></a></li>
+                  <li><strong>Allianz Versicherung</strong> Bewertung sehr gut häufig in Verbindung mit „SicherheitPlus“
+                    oder „Direct Plus“. <a class="source-chip"
+                      href="https://www.allianz.de/recht-und-eigentum/privat-haftpflichtversicherung/rechner/?page=angaben"
+                      target="_blank" rel="noopener"><img class="source-chip-logo" src="logos/allianz_logo.png"
+                        alt=""><span>Allianz</span></a></li>
+                </ul>
+
+                <h3>Wichtige Informationen zur Nutzung</h3>
+                <ul>
+                  <i> Hinweis: Nicht zu verwechseln mit der Hausratversicherung, welche Ihr eigenes Eigentum in der
+                    Wohnung schützt. </i>
+                </ul>
+                <ul>
+                  <!-- 
+                <li><strong>Datenschutz:</strong> Logfiles verarbeiten personenbezogene Daten (wie IP-Adressen), weshalb beim Umgang mit diesen Daten datenschutzrechtliche Aspekte (z.&nbsp;B. nach EuGH-Urteilen) beachtet werden müssen.</li>
+                <li><strong>Formate:</strong> Die Dateien (meist .log) können mit Texteditoren geöffnet werden.</li>
+                <li><strong>Analyse-Tools:</strong> Zur Auswertung können spezialisierte Tools oder, im Fall von Windows Servern, der <a href="https://www.ionos.de/hilfe/server-cloud-infrastructure/troubleshooting/log-dateien-pruefen/" target="_blank" rel="noopener">Event Viewer</a> verwendet werden. <button class="source-chip" type="button" data-source-jump="bfdi"><span class="favicon-dot tone-3">B</span><span>bfdi.bund. +3</span></button></li>
+              -->
+                </ul>
+                <!-- 
+              <p>Logfiles sind somit ein essenzielles Werkzeug für Webmaster, SEOs und Usability-Experten, um Lücken in der Nutzeranalyse zu schließen.</p>
+              -->
+                <p class="ai-note">KI-Antworten können Fehler enthalten. <a href="#" data-modal="ai-info">Weitere
+                    Informationen</a></p>
+              </div>
+            </div>
+            <div class="expand-zone">
+              <button class="pill-button expand-button" type="button" data-toggle-ai aria-expanded="false"><span>Mehr
+                  anzeigen</span><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M5.41 7.59 4 9l8 8 8-8-1.41-1.41L12 14.17z"></path>
+                </svg></button>
+            </div>
+
+
+
+            <div class="ai-actions" aria-label="Aktionen zur KI-Antwort">
+              <button type="button" class="icon-button" data-share="ai-overview" aria-label="Teilen"><svg
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M18 16.1c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.22.09-.45.09-.7s-.04-.48-.09-.7l7.05-4.11A2.99 2.99 0 1 0 15 5c0 .25.04.48.09.7L8.04 9.81A3 3 0 1 0 8.04 14.2l7.12 4.18c-.05.2-.08.41-.08.62A2.92 2.92 0 1 0 18 16.1Z">
+                  </path>
+                </svg></button>
+              <button type="button" class="icon-button" data-feedback="up" aria-label="Positives Feedback"><svg
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M2 21h4V9H2v12Zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 1 6.59 7.59C6.22 7.95 6 8.45 6 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2Z">
+                  </path>
+                </svg></button>
+              <button type="button" class="icon-button" data-feedback="down" aria-label="Negatives Feedback"><svg
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M22 3h-4v12h4V3ZM2 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 23l6.58-6.59c.37-.36.59-.86.59-1.41V5c0-1.1-.9-2-2-2H7c-.83 0-1.54.5-1.84 1.22L2.14 11.27c-.09.23-.14.47-.14.73v2Z">
+                  </path>
+                </svg></button>
+            </div>
+          </div>
+
+          <!--- 
+          <div class="ask-box" data-ask-box>
+            <textarea rows="1" placeholder="Frage senden" aria-label="Frage senden" data-ask-input></textarea>
+            <button type="button" class="icon-button" data-toast="Sprachsuche ist in dieser HTML-Version nicht verbunden" aria-label="Microphone"><svg viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-400q-50 0-85-35t-35-85v-240q0-50 35-85t85-35q50 0 85 35t35 85v240q0 50-35 85t-85 35Zm-40 280v-123q-104-14-172-93t-68-184h80q0 83 58.5 141.5T480-320q83 0 141.5-58.5T680-520h80q0 105-68 184t-172 93v123h-80Z"></path></svg></button>
+            <button type="button" class="send-button" data-ask-send disabled aria-label="Senden"><svg width="24" height="24" viewBox="0 -960 960 960" aria-hidden="true"><path fill="currentColor" d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"></path></svg></button>
+          </div>
+        </div>
+        -->
+          <!-- weitere Quellen in grauen Box rechts oder unterhalb der AIO-->
+          <aside class="source-panel" data-source-panel aria-label="Quellen der KI-Antwort">
+            <div class="source-panel-head"><span class="favicon-stack"><span class="stack-dot tone-2">C</span><span
+                  class="stack-dot tone-1">A</span><span
+                  class="stack-dot tone-3">H</span></span><span>6&nbsp;Websites</span></div>
+
+            <article class="source-card" id="source-check24" data-source-id="check24">
+              <a class="source-content" href="https://www.check24.de/haftpflichtversicherung/" target="_blank"
+                rel="noopener">
+                <div class="source-title">Privathaftpflicht vergleichen: Tarife und Leistungen</div>
+                <div class="source-desc">Check24 vergleicht Haftpflicht-Tarife für Singles, Paare und Familien und zeigt
+                  Beiträge, Deckungssummen und Zusatzleistungen im Überblick.</div>
+                <div class="source-meta"><span class="result-logo tone-1"><img src="logos/check24_logo.png" alt=""
+                      loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">C</span></span><span>Check24</span>
+                </div>
+              </a>
+              <button class="card-menu-button" type="button" data-source-menu="check24"
+                aria-label="Weitere Optionen">⋮</button>
+            </article>
+
+            <article class="source-card" id="source-huk" data-source-id="huk">
+              <a class="source-content"
+                href="https://www.huk.de/haus-haftung-recht/haftpflichtversicherung/private-haftpflichtversicherung.html"
+                target="_blank" rel="noopener">
+                <div class="source-title">Private Haftpflichtversicherung: Test "Sehr gut"</div>
+                <div class="source-desc">HUK-COBURG beschreibt Schutz bei Sachschäden, Mietsachen, Schlüsselverlust und
+                  weiteren Alltagsschäden im Rahmen der Privathaftpflicht.</div>
+                <div class="source-meta"><span class="result-logo tone-3"><img src="logos/huk_logo.png" alt=""
+                      loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">H</span></span><span>HUK-COBURG</span></div>
+              </a>
+              <button class="card-menu-button" type="button" data-source-menu="huk"
+                aria-label="Weitere Optionen">⋮</button>
+            </article>
+
+            <article class="source-card" id="source-ruv" data-source-id="ruv">
+              <a class="source-content" href="https://www.ruv.de/lp/haftpflicht/haftpflichtversicherung" target="_blank"
+                rel="noopener">
+                <div class="source-title">R+V Haftpflicht - Privathaftpflichtversicherung</div>
+                <div class="source-desc">R+V stellt Tarife für Singles, Paare und Familien vor, mit Zusatzbausteinen und
+                  Absicherung gegen typische private Haftungsrisiken.</div>
+                <div class="source-meta"><span class="result-logo tone-4"><img src="logos/logo-ruv.png" alt=""
+                      loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">R</span></span><span>R+V</span></div>
+              </a>
+              <button class="card-menu-button" type="button" data-source-menu="ruv"
+                aria-label="Weitere Optionen">⋮</button>
+            </article>
+            <!-- 
+          <article class="source-card" id="source-bfdi" data-source-id="bfdi">
+            <a class="source-content" href="https://www.bfdi.bund.de/DE/Buerger/Inhalte/Telemedien/LogFile_Analyse.html" target="_blank" rel="noopener">
+              <div class="source-title">Datenschutzrechtliche Aspekte bei der Verarbeitung von LogFile-Daten</div>
+              <div class="source-desc">In LogFiles werden daher personenbezogene Daten verarbeitet (siehe hierzu auch EuGH, Urteil vom 19. Oktober 2016, Rechtssache C-5...</div>
+              <div class="source-meta"><span class="favicon-dot tone-3">B</span><span>bfdi.bund.</span></div>
+            </a>
+            <button class="card-menu-button" type="button" data-source-menu="bfdi" aria-label="Weitere Optionen">⋮</button>
+          </article>
+
+          <article class="source-card is-extra" id="source-usability" data-source-id="usability">
+            <a class="source-content" href="https://www.handbuch-usability.de/usability-testing/logfile-analyse/" target="_blank" rel="noopener">
+              <div class="source-title">Logfile Analyse - Handbuch Usability</div>
+              <div class="source-desc">Die Logfileanalyse ist eine sehr kostengünstige Methode der Usability Evaluation, da nahezu jeder Server Möglichkeiten zur Protoko...</div>
+              <div class="source-meta"><span class="favicon-dot tone-5">H</span><span>Handbuch Usability</span></div>
+            </a>
+            <button class="card-menu-button" type="button" data-source-menu="usability" aria-label="Weitere Optionen">⋮</button>
+          </article>
+
+          <article class="source-card is-extra" id="source-121" data-source-id="121">
+            <a class="source-content" href="https://www.121watt.de/newsletter/seo/was-ist-eine-logfile-analyse/" target="_blank" rel="noopener">
+              <div class="source-title">Was ist eine Logfile-Analyse? - 121WATT</div>
+              <div class="source-desc">11.10.2023 — Ein Logfile ist ein Dokument, in welchem jede einzelne Anfrage, die an deinen Server gestellt wird, registriert und dokumentiert w...</div>
+              <div class="source-meta"><span class="favicon-dot tone-1">1</span><span>121WATT</span></div>
+            </a>
+            <button class="card-menu-button" type="button" data-source-menu="121" aria-label="Weitere Optionen">⋮</button>
+          </article>
+
+          <article class="source-card is-extra" id="source-researchgate" data-source-id="researchgate">
+            <a class="source-content" href="https://www.researchgate.net/publication/345789147_Logfile-Analysen_Moglichkeiten_und_Grenzen_ihrer_Nutzung_bei_Untersuchungen_zur_Mensch-Maschine-Interaktion" target="_blank" rel="noopener">
+              <div class="source-title">Logfile-Analysen: Möglichkeiten und Grenzen ihrer Nutzung ...</div>
+              <div class="source-desc">04.01.2026 — Die Aufzeichnung der Computernutzung in automatisch generierten elektronischen Protokollen – so genannten Logfiles – entwickelt si...</div>
+              <div class="source-meta"><span class="favicon-dot tone-4">R</span><span>ResearchGate</span></div>
+            </a>
+            <button class="card-menu-button" type="button" data-source-menu="researchgate" aria-label="Weitere Optionen">⋮</button>
+          </article>
+
+          <article class="source-card is-extra" id="source-springer" data-source-id="springer">
+            <a class="source-content" href="https://link.springer.com/chapter/10.1007/978-3-322-89871-5_6" target="_blank" rel="noopener">
+              <div class="source-title">Deskriptive Logfile-Analysen — Durchführung und ...</div>
+              <div class="source-desc">Zusammenfassung. Logdateien enthalten im Allgemeinen Kennwerte, mit denen bestimmte Rechnertätigkeiten protokolliert werden. Im Be...</div>
+              <div class="source-meta"><span class="favicon-dot tone-5">S</span><span>Springer Nature Link</span></div>
+            </a>
+            <button class="card-menu-button" type="button" data-source-menu="springer" aria-label="Weitere Optionen">⋮</button>
+          </article>
+
+          <article class="source-card is-extra" id="source-adobe" data-source-id="adobe">
+            <a class="source-content" href="https://www.adobe.com/de/acrobat/resources/document-files/text-files/log-file.html" target="_blank" rel="noopener">
+              <div class="source-title">Was ist eine Log-Datei? - Adobe</div>
+              <div class="source-desc">Wie kann ich eine Log-Datei öffnen? Bei den meisten Dateien mit der Endung .log handelt es sich um einfache Textdokumente. Desweg...</div>
+              <div class="source-meta"><span class="favicon-dot tone-1">A</span><span>Adobe</span></div>
+            </a>
+            <button class="card-menu-button" type="button" data-source-menu="adobe" aria-label="Weitere Optionen">⋮</button>
+          </article>
+-->
+            <article class="source-card is-extra" id="source-axa" data-source-id="axa">
+              <a class="source-content"
+                href="https://www.axa.de/private-haftpflichtversicherung"
+                target="_blank" rel="noopener">
+                <div class="source-title">Private Haftpflichtversicherung von AXA</div>
+                <div class="source-desc">AXA informiert über flexible Haftpflicht-Tarife, hohe Versicherungssummen und
+                  Schutz bei Personen-, Sach- und Vermögensschäden.</div>
+                <div class="source-meta"><span class="result-logo tone-5"><img src="logos/axa_logo.png" alt=""
+                      loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">A</span></span><span>AXA</span></div>
+              </a>
+              <button class="card-menu-button" type="button" data-source-menu="axa"
+                aria-label="Weitere Optionen">⋮</button>
+            </article>
+
+            <article class="source-card is-extra" id="source-wuerttembergische" data-source-id="wuerttembergische">
+              <a class="source-content" href="https://www.wuerttembergische.de/existenz/private-haftpflichtversicherung/"
+                target="_blank" rel="noopener">
+                <div class="source-title">Private Haftpflichtversicherung – bis zu 50 Mio. € Schutz</div>
+                <div class="source-desc">Die Württembergische erläutert Kompakt-, Komfort- und Premiumschutz für private
+                  Haftpflichtfälle und alltägliche Missgeschicke.</div>
+                <div class="source-meta"><span class="result-logo tone-4"><img src="logos/Württembergische_logo.png"
+                      alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">W</span></span><span>Württembergische</span></div>
+              </a>
+              <button class="card-menu-button" type="button" data-source-menu="wuerttembergische"
+                aria-label="Weitere Optionen">⋮</button>
+            </article>
+
+            <article class="source-card is-extra" id="source-allianz" data-source-id="allianz">
+              <a class="source-content"
+                href="https://www.allianz.de/recht-und-eigentum/privat-haftpflichtversicherung/rechner/?page=angaben"
+                target="_blank" rel="noopener">
+                <div class="source-title">Haftpflicht-Tarif berechnen</div>
+                <div class="source-desc">Allianz bietet einen Tarifrechner für die private Haftpflichtversicherung mit
+                  Angaben zu Schutzumfang, Beiträgen und Leistungsbausteinen.</div>
+                <div class="source-meta"><span class="result-logo tone-4"><img src="logos/allianz_logo.png" alt=""
+                      loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">A</span></span><span>Allianz</span></div>
+              </a>
+              <button class="card-menu-button" type="button" data-source-menu="allianz"
+                aria-label="Weitere Optionen">⋮</button>
+            </article>
+
+            <button class="pill-button source-more" type="button" data-toggle-sources aria-expanded="false">Alle
+              anzeigen</button>
+          </aside>
+        </div>
+      </section>
+
+      <section aria-labelledby="web-results-title">
+
+        <!--
+            <article class="result-card is-ad" data-result-url="https://www.ionos.de/digitalguide/online-marketing/web-analyse/logfile-analyse-user-statistiken-dank">
+        <button class="ad-center-button" type="button" data-modal="ad-center"><span class="favicon-dot tone-2">i</span><span>Mein Anzeigen-Center</span></button>
+        <button class="icon-button result-menu" type="button" data-result-menu aria-label="Weitere Optionen">⋮</button>
+        <div class="result-meta-row"><span class="favicon-dot tone-2">I</span><div><div class="result-site">ionos.de</div><div class="result-url">https://www.ionos.de › ... › Web-Analyse</div></div></div>
+        <a class="result-title" href="https://www.ionos.de/digitalguide/online-marketing/web-analyse/logfile-analyse-user-statistiken-dank" target="_blank" rel="noopener">Logfile-Analyse: Das verrät das Webserver-Log über ... - IONOS</a>
+        <p class="result-snippet">16.09.2025 — Erfahren Sie, wie Sie <em>Logfiles auswerten</em>, wertvolle SEO-Daten gewinnen und das Verhalten Ihrer Besucher analysieren.</p>
+        <div class="sitelinks"><a href="https://www.ionos.de/digitalguide/online-marketing/web-analyse/logfile-analyse-user-statistiken-dank" target="_blank" rel="noopener">Was ist eine Logfile-Analyse?</a><a href="https://www.ionos.de/digitalguide/online-marketing/web-analyse/logfile-analyse-user-statistiken-dank" target="_blank" rel="noopener">Analyse des Webserver-Logs...</a></div>
+      </article>
+-->
+
+        <div class="results-page" data-results-page="1">
+        <!-- Gesponserte Ergebnisse-->
+        <section class="sponsored-results" data-sponsored-results aria-labelledby="sponsored-results-title">
+          <h2 class="paa-title" id="sponsored-results-title">Gesponserte Ergebnisse</h2>
+          <div class="sponsored-content" data-sponsored-content>
+        <!-- Ergebnis-Logo austauschen: Bild in den Ordner "logos" legen und beim jeweiligen img src="logos/dateiname.png" eintragen. Bei src="" bleibt der Buchstaben-Fallback sichtbar. -->
+        <article class="result-card" data-result-url="https://www.check24.de/haftpflichtversicherung/">
+          <button class="icon-button result-menu" type="button" data-result-menu
+            aria-label="Weitere Optionen">⋮</button>
+          <div class="result-meta-row"><span class="result-logo tone-1"><img src="logos/check24_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">C</span></span>
+            <div>
+              <div class="result-site">Check24</div>
+              <div class="result-url">https://www.check24.de › Versicherung › vergleichen › </div>
+            </div>
+          </div>
+          <a class="result-title" href="https://www.check24.de/haftpflichtversicherung/" target="_blank"
+            rel="noopener">Versicherung vergleichen – Tarife, Leistungen und Kosten im Überblick</a>
+          <p class="result-snippet">Vergleichen Sie Versicherungen schnell und einfach. Finden Sie passende Tarife für
+            Haftpflicht, Hausrat, Rechtsschutz,
+            Kfz- oder Krankenversicherung und informieren Sie sich über Leistungen, Beiträge und ....</p>
+        </article>
+
+
+        <article class="result-card"
+          data-result-url="https://www.allianzdirect.de/privathaftpflicht/lp/privathaftpflicht-promotion/">
+          <button class="icon-button result-menu" type="button" data-result-menu
+            aria-label="Weitere Optionen">⋮</button>
+          <div class="result-meta-row"><span class="result-logo tone-4"><img src="logos/allianz_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">A</span></span>
+            <div>
+              <div class="result-site">Allianz Direct</div>
+              <div class="result-url">https://www.allianzdirect.de/ › Haftpflicht › Hilfe & Schadenförderung</div>
+            </div>
+          </div>
+          <a class="result-title" href="https://www.allianzdirect.de/privathaftpflicht/lp/privathaftpflicht-promotion/"
+            target="_blank" rel="noopener">Schnell und einfach absichern | 15 € Amazon-Gutschein sichern</a>
+          <p class="result-snippet">Die Privathaftpflichtversicherung mit Allianz-Qualität zum Direct-Preis.
+            Privathaftpflicht direct in Topform. Täglich kündbar. bis 50 Mio. Schadenssumme. Neu: ab 1,97€/Monat*
+            Weltweiter Schutz.
+            Mehr als 1 Million Besuche im letzten Monat</p>
+          <div class="sitelinks">
+            <a href="https://www.allianzdirect.de/privathaftpflicht/lp/privathaftpflicht-promotion/" target="_blank"
+              rel="noopener">Funktionsweise von Haftpflichtversicherungen...</a>
+            <a href="https://www.allianzdirect.de/privathaftpflicht/lp/privathaftpflicht-promotion/" target="_blank"
+              rel="noopener">Vorteile bei Allianz</a>
+          </div>
+        </article>
+
+
+          </div>
+          <div class="sponsored-toggle-wrap">
+            <button class="sponsored-toggle" type="button" data-toggle-sponsored aria-expanded="true">
+              <span>Gesponserte Ergebnisse ausblenden</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M7.41 14.59 12 10l4.59 4.59L18 13.17l-6-6-6 6z"></path>
+              </svg>
+            </button>
+          </div>
+        </section>
+
+
+        <!--Organischen Ergebnissen -->
+
+        <article class="result-card" data-result-url="https://www.ruv.de/lp/haftpflicht/haftpflichtversicherung">
+          <button class="icon-button result-menu" type="button" data-result-menu
+            aria-label="Weitere Optionen">⋮</button>
+          <div class="result-meta-row"><span class="result-logo tone-4"><img src="logos/logo-ruv.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">R</span></span>
+            <div>
+              <div class="result-site">ruv.de</div>
+              <div class="result-url">https://www.ruv.de › publication › 34578914...</div>
+            </div>
+          </div>
+          <a class="result-title" href="https://www.ruv.de/lp/haftpflicht/haftpflichtversicherung" target="_blank"
+            rel="noopener">R+V Haftpflicht - Privathaftpflichtversicherung</a>
+          <p class="result-snippet">04.01.2026 — Top-Schutz für Singles, Paare und Familien. Individualisieren Sie Ihren
+            Schutz nach Ihren Bedürfnissen mit unseren Zusatzbausteinen. Einfach online versichern. Individuelle Tarife.
+            Schaden verfolgen per SMS. Gut geschützt mit R+V. Schon ab morgen geschützt. Sicher online abschließen.</p>
+        </article>
+
+
+
+        <article class="result-card"
+          data-result-url="https://www.huk.de/haus-haftung-recht/haftpflichtversicherung/private-haftpflichtversicherung.html">
+          <button class="icon-button result-menu" type="button" data-result-menu
+            aria-label="Weitere Optionen">⋮</button>
+          <div class="result-meta-row"><span class="result-logo tone-3"><img src="logos/huk_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">H</span></span>
+            <div>
+              <div class="result-site">HUK-COBURG</div>
+              <div class="result-url">https://www.huk.de› Haftpflichtversicherung</div>
+            </div>
+          </div>
+          <a class="result-title"
+            href="https://www.huk.de/haus-haftung-recht/haftpflichtversicherung/private-haftpflichtversicherung.html"
+            target="_blank" rel="noopener">Private Haftpflichtversicherung: Test "Sehr gut"</a>
+          <p class="result-snippet">08.04.2026 — Private Haftpflichtversicherung: Test "Sehr gut"
+            Ihre Privathaftpflichtversicherung schützt Sie bei Sachschäden an und Verlust von bestimmten beweglichen
+            Sachen, die Sie gemietet, geleast, geliehen, gepachtet ...</p>
+        </article>
+
+
+        <!--
+      <section class="scholar-box">
+        <a class="scholar-title" href="https://scholar.google.de/scholar?q=logfile+analyse+bei+Nutzerverhalten&hl=de&as_sdt=0&as_vis=1&oi=scholart" target="_blank" rel="noopener">Wissenschaftliche Artikel zu logfile analyse bei Nutzerverhalten</a>
+        <div class="scholar-entry"><a href="https://scholar.google.de/scholar?q=Logfile-Analysen+Möglichkeiten+und+Grenzen" target="_blank" rel="noopener">Logfile-Analysen: Möglichkeiten und Grenzen ihrer …</a> - ‎Priemer - Zitiert von: 21</div>
+        <div class="scholar-entry"><a href="https://scholar.google.de/scholar?q=Deskriptive+Logfile-Analysen+Durchführung" target="_blank" rel="noopener">Deskriptive Logfile-Analysen—Durchführung und …</a> - ‎Englbrecht - Zitiert von: 7</div>
+      </section>
+      -->
+
+
+        <!-- <div class="section-label">Fragen Dropdown</div> -->
+
+        <!-- Fragen Dropdown -->
+        <section class="people-also-ask" aria-labelledby="paa-title">
+          <h2 class="paa-title" id="paa-title">Weitere Fragen</h2>
+          <div class="question-item">
+            <a class="source-content" href="https://signal-iduna.de/ratgeber/privathaftpflicht-uebernahme/"
+              target="_blank" rel="noopener"></a>
+            <button class="question-button" type="button" aria-expanded="false"><span>Was ist von der
+                Haftpflichtversicherung versichert?</span><svg width="20" height="20" viewBox="0 0 24 24"
+                aria-hidden="true">
+                <path fill="currentColor" d="M5.41 7.59 4 9l8 8 8-8-1.41-1.41L12 14.17z"></path>
+              </svg></button>
+            <div class="question-answer">Die private Haftpflichtversicherung deckt Personen-, Sach- und
+              Vermögensschäden, die Sie versehentlich anderen zufügen, und schützt Sie vor existenzbedrohenden
+              Forderungen. Sie übernimmt Schadensersatzansprüche, prüft die Haftungsfrage, leistet Schadenersatz oder
+              wehrt unberechtigte Ansprüche ab. Versichert sind oft auch Mietsachschäden und der Verlust fremder
+              Schlüssel.
+              <div class="source-meta"><span class="favicon-dot tone-3">B</span><span>https://signal-iduna.de/</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="question-item">
+            <a class="source-content" href="https://www.check24.de/privathaftpflicht/" target="_blank"
+              rel="noopener"></a>
+            <button class="question-button" type="button" aria-expanded="false"><span>Wie viel kostet eine
+                Haftpflichtversicherung?</span><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M5.41 7.59 4 9l8 8 8-8-1.41-1.41L12 14.17z"></path>
+              </svg></button>
+            <div class="question-answer"> Eine gute private Haftpflichtversicherung kostet für Singles ca. 40 bis 65
+              Euro pro Jahr, was etwa 3 bis 5 Euro im Monat entspricht. Für Familien oder Paare beginnen Tarife oft ab
+              ca. 60 bis 120 Euro jährlich. Sehr günstige Basis-Tarife sind vereinzelt schon ab unter 20 Euro im Jahr
+              verfügbar
+              <div class="source-meta"><span
+                  class="favicon-dot tone-3">B</span><span>https://www.check24.de/privathaftpflicht/</span></div>
+            </div>
+          </div>
+
+          <div class="question-item">
+            <a class="source-content"
+              href="https://www.lohnsteuer-kompakt.de/fag/2025/2064/kann_ich_meine_haftpflichtversicherung_ueber_die_steuererklaerung_absetzen"
+              target="_blank" rel="noopener"></a>
+            <button class="question-button" type="button" aria-expanded="false"><span>Sind Haftpflichtversicherungen
+                steuerlich absetzbar?</span><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M5.41 7.59 4 9l8 8 8-8-1.41-1.41L12 14.17z"></path>
+              </svg></button>
+            <div class="question-answer translation" data-translation>
+              <div class="translated-text">Ja, Haftpflichtversicherungen sind in Deutschland als Sonderausgaben
+                (Vorsorgeaufwendungen) in der Steuererklärung absetzbar. Dazu zählen die private Haftpflicht,
+                Kfz-Haftpflicht, Tierhalter- und Haus- und Grundbesitzerhaftpflicht. Sie können diese in der Anlage
+                Vorsorgeaufwand eintragen, wobei Höchstgrenzen (meist 1.900 € für Angestellte) beachtet werden müssen.
+              </div>
+              <div class="source-meta"><span
+                  class="favicon-dot tone-3">B</span><span>https://www.lohnsteuer-kompakt.de</span></div>
+              <!--<button type="button" class="pill-button" data-toggle-original>Original ansehen</button> -->
+            </div>
+          </div>
+
+          <div class="question-item">
+            <a class="source-content"
+              href="https://www.sparkasse.de/pk/ratgeber/finanzplanung/risiken-absichern/sinnvolle-versicherungen.html"
+              target="_blank" rel="noopener"></a>
+            <button class="question-button" type="button" aria-expanded="false"><span>Welche 5 Versicherungen sind
+                Pflicht?</span><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M5.41 7.59 4 9l8 8 8-8-1.41-1.41L12 14.17z"></path>
+              </svg></button>
+            <div class="question-answer">Als existenzieller Basisschutz gelten für die meisten Menschen die private
+              Haftpflicht, die Berufsunfähigkeitsversicherung, die Pflegezusatz- sowie oft die
+              Krankentagegeldversicherung und die Risikolebensversicherung, wenn Angehörige oder Kredite abgesichert
+              werden müssen.
+              <div class="source-meta"><span class="favicon-dot tone-3">B</span><span>https://www.sparkasse.de/</span>
+              </div>
+              <!-- <span class="inline-source">Was ist eine Log-Datei? · Adobe · adobe.com</span></div> -->
+            </div>
+        </section>
+
+
+        <!-- Organische Ergebnisse -->
+
+        <article class="result-card" data-result-url="https://www.cosmosdirekt.de/private-haftpflichtversicherung/">
+          <button class="icon-button result-menu" type="button" data-result-menu
+            aria-label="Weitere Optionen">⋮</button>
+          <div class="result-meta-row"><span class="result-logo tone-5"><img src="logos/cosmosdirekt-logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">C</span></span>
+            <div>
+              <div class="result-site">Cosmos Direct</div>
+              <div class="result-url">https://www.cosmosdirekt.de› haftpflicht-pflicht</div>
+            </div>
+          </div>
+          <a class="result-title" href="https://www.cosmosdirekt.de/private-haftpflichtversicherung/" target="_blank"
+            rel="noopener">Junge-Leute-Rabatt</a>
+          <p class="result-snippet">27.01.2016 — Top Angebote für junge Leute — Deine neue Haftpflichtversicherung
+            abschließen & bis zu 69% sparen. Sicher dir Deine Haftpflichtversicherung zu günstigen Beiträgen. Mehrfacher
+            Testsieger. Rund 1,7 Mio. Kunden.</p>
+        </article>
+
+
+        <article class="result-card" data-result-url="https://www.devk.de/produkte/haftpflichtversicherung/privathaftpflicht/">
+          <button class="icon-button result-menu" type="button" data-result-menu
+            aria-label="Weitere Optionen">⋮</button>
+          <div class="result-meta-row"><span class="result-logo tone-2"><img src="logos/devk_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">D</span></span>
+            <div>
+              <div class="result-site">DEVK</div>
+              <div class="result-url">https://www.devk.de › produkte › haftpflichtversicherung</div>
+            </div>
+          </div>
+          <a class="result-title" href="https://www.devk.de/produkte/haftpflichtversicherung/privathaftpflicht/"
+            target="_blank" rel="noopener">Private Haftpflichtversicherung: schon ab 3,50 € monatlich</a>
+          <p class="result-snippet">Die DEVK Privathaftpflicht schützt Singles, Paare und Familien vor Ansprüchen aus
+            Personen-, Sach- und Vermögensschäden. Passende Tarife online berechnen und direkt abschließen.</p>
+        </article>
+
+        <article class="result-card"
+          data-result-url="https://www.ergo.de/de/Produkte/Haftpflichtversicherung/Privathaftpflichtversicherung">
+          <button class="icon-button result-menu" type="button" data-result-menu
+            aria-label="Weitere Optionen">⋮</button>
+          <div class="result-meta-row"><span class="result-logo tone-5"><img src="logos/ergo_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">E</span></span>
+            <div>
+              <div class="result-site">ERGO</div>
+              <div class="result-url">https://www.ergo.de › haftpflichtversicherung</div>
+            </div>
+          </div>
+          <a class="result-title"
+            href="https://www.ergo.de/de/Produkte/Haftpflichtversicherung/Privathaftpflichtversicherung"
+            target="_blank" rel="noopener">Private Haftpflichtversicherung – Schutz bei Missgeschicken</a>
+          <p class="result-snippet">Mit der ERGO Privat-Haftpflicht sichern Sie sich gegen finanzielle Folgen ab, wenn
+            Sie Dritten Sach-, Personen- oder Vermögensschäden zufügen. Beitrag online berechnen.</p>
+        </article>
+
+        <article class="result-card"
+          data-result-url="https://www.axa.de/private-haftpflichtversicherung">
+          <button class="icon-button result-menu" type="button" data-result-menu
+            aria-label="Weitere Optionen">⋮</button>
+          <div class="result-meta-row"><span class="result-logo tone-5"><img src="logos/axa_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">A</span></span>
+            <div>
+              <div class="result-site">AXA</div>
+              <div class="result-url">https://www.axa.de › private-haftpflichtversicherung</div>
+            </div>
+          </div>
+          <a class="result-title" href="https://www.axa.de/private-haftpflichtversicherung" target="_blank"
+            rel="noopener">Private Haftpflichtversicherung von AXA ab 1,49 € mtl.</a>
+          <p class="result-snippet">AXA bietet flexible Tarife für Singles, Paare und Familien mit Schutz bei
+            Personen-, Sach- und Vermögensschäden. Versicherungssumme bis 60 Mio. € möglich.</p>
+        </article>
+
+
+        <article class="result-card"
+          data-result-url="https://www.allianz.de/recht-und-eigentum/privat-haftpflichtversicherung/rechner/?page=angaben">
+          <button class="icon-button result-menu" type="button" data-result-menu
+            aria-label="Weitere Optionen">⋮</button>
+          <div class="result-meta-row"><span class="result-logo tone-4"><img src="logos/allianz_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">A</span></span>
+            <div>
+              <div class="result-site">Allianz </div>
+              <div class="result-url">https://www.allianz.de › recht-und-eigentum › rechner </div>
+            </div>
+          </div>
+          <a class="result-title"
+            href="https://www.allianz.de/recht-und-eigentum/privat-haftpflichtversicherung/rechner/?page=angaben"
+            target="_blank" rel="noopener">Haftpflicht-Tarif berechnen </a>
+          <p class="result-snippet">Berechnen Sie unkompliziert in nur zwei Schritten Ihren Beitrag zur privaten
+            Haftpflichtversicherung. Beantragen Sie Ihren Vertrag jetzt online!</p>
+          <div class="rating-line"><span>4,8</span><span class="stars">★★★★★</span><span>(28)</span><span>Weitere
+              Informationen zu den Bewertungen.</span></div>
+        </article>
+
+        <article class="result-card"
+          data-result-url="https://www.wuerttembergische.de/existenz/private-haftpflichtversicherung/">
+          <button class="icon-button result-menu" type="button" data-result-menu
+            aria-label="Weitere Optionen">⋮</button>
+          <div class="result-meta-row"><span class="result-logo tone-4"><img src="logos/Württembergische_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">W</span></span>
+            <div>
+              <div class="result-site">Württembergische</div>
+              <div class="result-url">https://www.wuerttembergische.de › private-haftpflichtversicherung</div>
+            </div>
+          </div>
+          <a class="result-title"
+            href="https://www.wuerttembergische.de/existenz/private-haftpflichtversicherung/" target="_blank"
+            rel="noopener">Private Haftpflichtversicherung – bis zu 50 Mio. € Schutz</a>
+          <p class="result-snippet">Die Württembergische schützt vor finanziellen Folgen kleiner und großer
+            Missgeschicke. Kompakt-, Komfort- und Premiumschutz für Singles, Paare und Familien.</p>
+          <div class="rating-line"><span>4,8</span><span class="stars">★★★★★</span><span>(28)</span><span>Weitere
+              Informationen zu den Bewertungen.</span></div>
+        </article>
+        </div>
+
+        <div class="results-page hidden" data-results-page="2">
+          <article class="result-card" data-result-url="https://signal-iduna.de/produkte/privathaftpflicht/">
+            <button class="icon-button result-menu" type="button" data-result-menu
+              aria-label="Weitere Optionen">⋮</button>
+            <div class="result-meta-row"><span class="result-logo tone-3"><img src="logos/SignalIduna-rund_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">S</span></span>
+              <div>
+                <div class="result-site">SIGNAL IDUNA</div>
+                <div class="result-url">https://signal-iduna.de › produkte › privathaftpflicht</div>
+              </div>
+            </div>
+            <a class="result-title" href="https://signal-iduna.de/produkte/privathaftpflicht/" target="_blank"
+              rel="noopener">Privathaftpflichtversicherung – Schutz ab 3,38 € monatlich</a>
+            <p class="result-snippet">SIGNAL IDUNA bietet Privathaftpflicht-Tarife für unterschiedliche Lebenslagen.
+              Mitversichert sind je nach Tarif hohe Deckungssummen, Neuwertentschädigung und Schutz bei Alltagsschäden.</p>
+          </article>
+
+          <article class="result-card"
+            data-result-url="https://www.gothaer.de/privatkunden/haftpflichtversicherung/private-haftpflichtversicherung/">
+            <button class="icon-button result-menu" type="button" data-result-menu
+              aria-label="Weitere Optionen">⋮</button>
+            <div class="result-meta-row"><span class="result-logo tone-4"><img src="logos/gothaer_logo.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">G</span></span>
+              <div>
+                <div class="result-site">Gothaer</div>
+                <div class="result-url">https://www.gothaer.de › private-haftpflichtversicherung</div>
+              </div>
+            </div>
+            <a class="result-title"
+              href="https://www.gothaer.de/privatkunden/haftpflichtversicherung/private-haftpflichtversicherung/"
+              target="_blank" rel="noopener">Private Haftpflichtversicherung – bis zu 100 Mio. € Deckung</a>
+            <p class="result-snippet">Die Gothaer Privathaftpflicht schützt bei Personen-, Sach- und Vermögensschäden.
+              Tarife für Singles, Paare und Familien mit Schutz bei Miet-, Internet- und Gefälligkeitsschäden.</p>
+          </article>
+
+          <section class="people-also-ask" aria-labelledby="paa-title-page2">
+            <h2 class="paa-title" id="paa-title-page2">Weitere Fragen</h2>
+            <div class="question-item">
+              <button class="question-button" type="button" aria-expanded="false"><span>Welche Schäden übernimmt die
+                  private Haftpflicht?</span><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M5.41 7.59 4 9l8 8 8-8-1.41-1.41L12 14.17z"></path>
+                </svg></button>
+              <div class="question-answer">Die private Haftpflicht übernimmt berechtigte Ansprüche aus Personen-,
+                Sach- und Vermögensschäden und prüft zugleich, ob Forderungen überhaupt bestehen. Unberechtigte
+                Ansprüche werden abgewehrt.</div>
+            </div>
+
+            <div class="question-item">
+              <button class="question-button" type="button" aria-expanded="false"><span>Für wen lohnt sich eine
+                  Privathaftpflicht?</span><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M5.41 7.59 4 9l8 8 8-8-1.41-1.41L12 14.17z"></path>
+                </svg></button>
+              <div class="question-answer">Sie lohnt sich praktisch für alle, weil man für selbst verursachte Schäden
+                unbegrenzt mit dem eigenen Vermögen haftet. Besonders wichtig ist sie für Familien, Paare, Mieter und
+                Personen mit häufigem Kontakt zu fremdem Eigentum.</div>
+            </div>
+          </section>
+
+          <article class="result-card"
+            data-result-url="https://www.hdi.de/versicherungen/haftpflichtversicherung/private-haftpflichtversicherung/">
+            <button class="icon-button result-menu" type="button" data-result-menu
+              aria-label="Weitere Optionen">⋮</button>
+            <div class="result-meta-row"><span class="result-logo tone-2"><img src="logos/hdi_logo.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">H</span></span>
+              <div>
+                <div class="result-site">HDI</div>
+                <div class="result-url">https://www.hdi.de › private-haftpflichtversicherung</div>
+              </div>
+            </div>
+            <a class="result-title"
+              href="https://www.hdi.de/versicherungen/haftpflichtversicherung/private-haftpflichtversicherung/"
+              target="_blank" rel="noopener">Private Haftpflichtversicherung von HDI – passend zum Lifestyle</a>
+            <p class="result-snippet">HDI bietet Basis-, Komfort- und Premiumschutz für unterschiedliche Lebenssituationen.
+              Zusatzbausteine erweitern den Schutz bei Schäden im Alltag und im Schadenfall.</p>
+          </article>
+
+          <article class="result-card" data-result-url="https://www.zurich.de/de-de/pk/haftpflicht-recht/privathaftpflicht">
+            <button class="icon-button result-menu" type="button" data-result-menu
+              aria-label="Weitere Optionen">⋮</button>
+            <div class="result-meta-row"><span class="result-logo tone-5"><img src="logos/zurich_logo.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">Z</span></span>
+              <div>
+                <div class="result-site">Zurich</div>
+                <div class="result-url">https://www.zurich.de › privathaftpflicht</div>
+              </div>
+            </div>
+            <a class="result-title" href="https://www.zurich.de/de-de/pk/haftpflicht-recht/privathaftpflicht"
+              target="_blank" rel="noopener">Private Haftpflichtversicherung – Schutz bis zu 50 Mio. €</a>
+            <p class="result-snippet">Die Zurich Privathaftpflicht springt ein, wenn durch ein Missgeschick Forderungen
+              Dritter entstehen. Schutz für Personen-, Sach- und Vermögensschäden im Alltag.</p>
+          </article>
+
+          <article class="result-card" data-result-url="https://www.vhv.de/versicherungen/haftpflichtversicherung/privat">
+            <button class="icon-button result-menu" type="button" data-result-menu
+              aria-label="Weitere Optionen">⋮</button>
+            <div class="result-meta-row"><span class="result-logo tone-1"><img src="logos/vhv_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">V</span></span>
+              <div>
+                <div class="result-site">VHV</div>
+                <div class="result-url">https://www.vhv.de › haftpflichtversicherung › privat</div>
+              </div>
+            </div>
+            <a class="result-title" href="https://www.vhv.de/versicherungen/haftpflichtversicherung/privat"
+              target="_blank" rel="noopener">Privat-Haftpflichtversicherung – leistungsstarker Schutz</a>
+            <p class="result-snippet">Die VHV Privathaftpflicht bietet Schutz für Singles, Paare, Familien und 55+.
+              Hohe Versicherungssummen und wählbare Tariflinien sichern typische Alltagsrisiken ab.</p>
+          </article>
+
+          <article class="result-card" data-result-url="https://www.verivox.de/privathaftpflicht/">
+            <button class="icon-button result-menu" type="button" data-result-menu
+              aria-label="Weitere Optionen">⋮</button>
+            <div class="result-meta-row"><span class="result-logo tone-3"><img src="logos/verivox_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">V</span></span>
+              <div>
+                <div class="result-site">Verivox</div>
+                <div class="result-url">https://www.verivox.de › privathaftpflicht</div>
+              </div>
+            </div>
+            <a class="result-title" href="https://www.verivox.de/privathaftpflicht/" target="_blank"
+              rel="noopener">Privathaftpflicht vergleichen – Tarife und Leistungen im Überblick</a>
+            <p class="result-snippet">Verivox vergleicht Privathaftpflicht-Tarife verschiedener Versicherer. Finden Sie
+              passenden Schutz für Personen-, Sach- und Vermögensschäden und schließen Sie online ab.</p>
+          </article>
+
+          <article class="result-card" data-result-url="https://www.adam-riese.de/privathaftpflicht">
+            <button class="icon-button result-menu" type="button" data-result-menu
+              aria-label="Weitere Optionen">⋮</button>
+            <div class="result-meta-row"><span class="result-logo tone-4"><img src="logos/adam%20riese_logo.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="result-logo-fallback">A</span></span>
+              <div>
+                <div class="result-site">Adam Riese</div>
+                <div class="result-url">https://www.adam-riese.de › privathaftpflicht</div>
+              </div>
+            </div>
+            <a class="result-title" href="https://www.adam-riese.de/privathaftpflicht" target="_blank"
+              rel="noopener">Privathaftpflicht online abschließen – ab 1,98 € im Monat</a>
+            <p class="result-snippet">Adam Riese schützt bei Sach-, Personen- und Vermögensschäden. Kinder,
+              Schlüsselverlust und typische Missgeschicke im Alltag können je nach Tarif mitversichert sein.</p>
+          </article>
+        </div>
+
+        <nav class="pagination" aria-label="Seitennavigation">
+          <button class="page-link is-active" type="button" data-page="1" aria-current="page">1</button>
+          <button class="page-link" type="button" data-page="2">2</button>
+          <button class="page-link" type="button" data-page="3">3</button>
+          <button class="page-link" type="button" data-page="4">4</button>
+          <button class="page-link" type="button" data-page="5">5</button>
+          <button class="page-link" type="button" data-page="6">6</button>
+          <button class="page-link" type="button" data-page="7">7</button>
+          <button class="page-link" type="button" data-page="8">8</button>
+          <button class="page-link" type="button" data-page="9">9</button>
+          <button class="page-link" type="button" data-page="10">10</button>
+          <button class="page-link" type="button" data-page="next">Weiter</button>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="footer-inner">
+        <div class="footer-line"><span>Ergebnisse sind personalisiert</span><span>-</span><a href="#"
+            data-toast="Personalisierung wurde für diese Demo nicht geändert">Ohne Personalisierung ausprobieren</a>
+        </div>
+        <div class="footer-line"><span>Deutschland</span><span>Wiesbaden</span><span>-</span><span>Laut deiner
+            IP-Adresse</span><span>-</span><button type="button" data-location-update>Standort
+            aktualisieren</button><span data-location-status class="hidden">Standort wird aktualisiert...</span><a
+            href="#" data-modal="location-info">Weitere Informationen</a></div>
+        <div class="footer-line"><a href="#" data-modal="help">Hilfe</a><button type="button"
+            data-feedback="page">Feedback geben</button><a href="#" data-modal="privacy">Datenschutzerklärung</a><a
+            href="#" data-modal="terms">Nutzungsbedingungen</a></div>
+      </div>
+    </footer>
+
+    <div class="popover" data-popover-panel hidden></div>
+    <div class="toast" data-toast-box role="status" aria-live="polite"></div>
+
+    <dialog data-share-dialog>
+      <div class="dialog-inner">
+        <div class="dialog-head">
+          <h2 class="dialog-title">Teilen</h2><button class="dialog-close" type="button" data-close-dialog
+            aria-label="Schließen">×</button>
+        </div>
+        <div class="share-grid">
+          <a data-share-facebook target="_blank" rel="noopener">Facebook</a>
+          <a data-share-whatsapp target="_blank" rel="noopener">WhatsApp</a>
+          <a data-share-x target="_blank" rel="noopener">X</a>
+          <a data-share-mail>E-Mail</a>
+          <button type="button" data-copy-current>Anklicken, um Link zu kopieren</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog data-feedback-dialog>
+      <div class="dialog-inner">
+        <div class="dialog-head">
+          <h2 class="dialog-title">Danke</h2><button class="dialog-close" type="button" data-close-dialog
+            aria-label="Schließen">×</button>
+        </div>
+        <div class="feedback-grid">
+          <p>Dein Feedback hilft uns, Google zu verbessern. Weitere Informationen findest du in unserer <a href="#"
+              data-modal="privacy">Datenschutzerklärung</a>.</p>
+          <textarea placeholder="Mehr Feedback geben" aria-label="Mehr Feedback geben"></textarea>
+          <button class="primary-button" type="button" data-submit-feedback>Problem melden</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog data-info-dialog>
+      <div class="dialog-inner">
+        <div class="dialog-head">
+          <h2 class="dialog-title" data-info-title>Information</h2><button class="dialog-close" type="button"
+            data-close-dialog aria-label="Schließen">×</button>
+        </div>
+        <div data-info-content></div>
+      </div>
+    </dialog>
+
+    <script>
+      const sourceUrls = {
+        check24: 'https://www.check24.de/haftpflichtversicherung/',
+        huk: 'https://www.huk.de/haus-haftung-recht/haftpflichtversicherung/private-haftpflichtversicherung.html',
+        ruv: 'https://www.ruv.de/lp/haftpflicht/haftpflichtversicherung',
+        axa: 'https://www.axa.de/private-haftpflichtversicherung',
+        wuerttembergische: 'https://www.wuerttembergische.de/existenz/private-haftpflichtversicherung/',
+        allianz: 'https://www.allianz.de/recht-und-eigentum/privat-haftpflichtversicherung/rechner/?page=angaben'
+      };
+
+      const modalText = {
+        'advanced-search': ['Erweiterte Suche',
+          '<p>Hier wären die Google-Felder für exakte Wörter, Ausschlüsse, Sprache, Region und Dateityp. In dieser vereinfachten HTML-Version ist das als Dialog nachgebaut.</p>'
+        ],
+        'ai-info': ['Weitere Informationen',
+          '<p>KI-Antworten können Fehler enthalten. Prüfe wichtige Angaben anhand der verlinkten Quellen.</p>'
+        ],
+        'ad-center': ['Mein Anzeigen-Center',
+          '<p>Hier könntest du Informationen dazu sehen, warum diese Anzeige eingeblendet wurde, und Anzeigeneinstellungen ändern.</p>'
+        ],
+        'help': ['Hilfe',
+          '<p>Dies ist die vereinfachte HTML-Fassung der Suchergebnisseite. Die interaktiven Elemente sind lokal nachgebaut.</p>'
+        ],
+        'privacy': ['Datenschutzerklärung', '<p>Platzhalter für Datenschutzinformationen.</p>'],
+        'terms': ['Nutzungsbedingungen', '<p>Platzhalter für Nutzungsbedingungen.</p>'],
+        'location-info': ['Standortinformationen',
+          '<p>Der Standort basiert in der Originalseite auf der IP-Adresse. Hier wird der Status nur simuliert.</p>'
+        ],
+        'report-suggestions': ['Vervollständigungen melden',
+          '<p>Danke. Diese Demo speichert keine Meldungen, zeigt aber den Ablauf des Dialogs.</p>'
+        ]
+      };
+
+      const searchForm = document.querySelector('[data-search-form]');
+      const searchInput = document.querySelector('#search-input');
+      const popover = document.querySelector('[data-popover-panel]');
+      const toastBox = document.querySelector('[data-toast-box]');
+      const shareDialog = document.querySelector('[data-share-dialog]');
+      const feedbackDialog = document.querySelector('[data-feedback-dialog]');
+      const infoDialog = document.querySelector('[data-info-dialog]');
+      let activeFilterButton = null;
+
+      const queryFromIndex = new URLSearchParams(window.location.search).get('q');
+      if (queryFromIndex !== null) {
+        searchInput.value = queryFromIndex;
+      }
+
+      function showToast(message) {
+        toastBox.textContent = message;
+        toastBox.classList.add('is-visible');
+        clearTimeout(toastBox._timer);
+        toastBox._timer = setTimeout(() => toastBox.classList.remove('is-visible'), 2200);
+      }
+
+      function openDialog(dialog) {
+        if (dialog.showModal) dialog.showModal();
+        else dialog.setAttribute('open', '');
+      }
+
+      function closeDialogs() {
+        document.querySelectorAll('dialog[open]').forEach(dialog => dialog.close ? dialog.close() : dialog
+          .removeAttribute('open'));
+      }
+
+      function copyText(text, message = 'Link kopiert') {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(() => showToast(message)).catch(() => fallbackCopy(text, message));
+        } else {
+          fallbackCopy(text, message);
+        }
+      }
+
+      function fallbackCopy(text, message) {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        temp.setAttribute('readonly', '');
+        temp.style.position = 'fixed';
+        temp.style.left = '-9999px';
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+          document.execCommand('copy');
+        } catch (error) {}
+        temp.remove();
+        showToast(message);
+      }
+
+      function openInfoModal(key) {
+        const item = modalText[key] || ['Information', '<p>Keine weiteren Informationen verfügbar.</p>'];
+        infoDialog.querySelector('[data-info-title]').textContent = item[0];
+        infoDialog.querySelector('[data-info-content]').innerHTML = item[1];
+        openDialog(infoDialog);
+      }
+
+      function openShareDialog(url = window.location.href, title = document.title) {
+        const encodedUrl = encodeURIComponent(url);
+        const encodedTitle = encodeURIComponent(title);
+        shareDialog.querySelector('[data-share-facebook]').href =
+          `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+        shareDialog.querySelector('[data-share-whatsapp]').href = `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`;
+        shareDialog.querySelector('[data-share-x]').href =
+          `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+        shareDialog.querySelector('[data-share-mail]').href = `mailto:?subject=${encodedTitle}&body=${encodedUrl}`;
+        shareDialog.querySelector('[data-copy-current]').onclick = () => copyText(url);
+        openDialog(shareDialog);
+      }
+
+      function placePopover(anchor, html) {
+        popover.innerHTML = html;
+        popover.hidden = false;
+        const rect = anchor.getBoundingClientRect();
+        const width = 300;
+        const left = Math.min(Math.max(12, rect.left), window.innerWidth - width - 12);
+        const top = Math.min(rect.bottom + 8, window.innerHeight - 80);
+        popover.style.left = left + 'px';
+        popover.style.top = top + 'px';
+      }
+
+      function closePopover() {
+        popover.hidden = true;
+        popover.innerHTML = '';
+        document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('is-open'));
+        activeFilterButton = null;
+      }
+
+      function openNamedPopover(name, anchor) {
+        let html = '';
+        if (name === 'apps') {
+          html =
+            '<div class="apps-grid"><button class="app-tile" data-toast="Google-Suche geöffnet"><span class="app-icon tone-2">G</span>Suche</button><button class="app-tile" data-toast="Maps geöffnet"><span class="app-icon tone-3">M</span>Maps</button><button class="app-tile" data-toast="YouTube geöffnet"><span class="app-icon tone-1">Y</span>YouTube</button><button class="app-tile" data-toast="Gmail geöffnet"><span class="app-icon tone-4">G</span>Gmail</button><button class="app-tile" data-toast="Drive geöffnet"><span class="app-icon tone-5">D</span>Drive</button><button class="app-tile" data-toast="Kalender geöffnet"><span class="app-icon tone-2">K</span>Kalender</button></div>';
+        } else if (name === 'account') {
+          html =
+            '<div class="popover-row"><span class="account-button">V</span><div><strong>Vanessa Juric</strong><br><span style="color:#5f6368">vanessamjuric@gmail.com</span></div></div><button data-toast="Google-Konto geöffnet">Google-Konto verwalten</button><button data-toast="Abmeldung simuliert">Abmelden</button>';
+        } else if (name === 'more-tabs') {
+          html =
+            '<button data-tab-choice="Shopping">Shopping</button><button data-tab-choice="Maps">Maps</button><button data-tab-choice="Flüge">Flüge</button><button data-tab-choice="Tools">Tools</button>';
+        } else if (name === 'language-filter') {
+          html =
+            '<button data-filter-value="Beliebige Sprache">Beliebige Sprache</button><button data-filter-value="Seiten auf Deutsch">Seiten auf Deutsch</button>';
+        } else if (name === 'time-filter') {
+          html =
+            '<button data-filter-value="Beliebige Zeit">Beliebige Zeit</button><button data-filter-value="Letzte Stunde">Letzte Stunde</button><button data-filter-value="Letzte 24 Stunden">Letzte 24 Stunden</button><button data-filter-value="Letzte Woche">Letzte Woche</button><button data-filter-value="Letzter Monat">Letzter Monat</button><button data-filter-value="Letztes Jahr">Letztes Jahr</button><button data-modal="advanced-search">Zeitraum festlegen...</button>';
+        } else if (name === 'result-filter') {
+          html =
+            '<button data-filter-value="Alle Ergebnisse">Alle Ergebnisse</button><button data-filter-value="Wortwörtlich">Wortwörtlich</button>';
+        } else if (name === 'ai-main-menu') {
+          html =
+            '<button data-modal="ai-info">Informationen zu diesem Ergebnis</button><button data-feedback="page">Feedback geben</button><button data-modal="help">Hilfe</button>';
+        }
+        placePopover(anchor, html);
+      }
+
+      searchInput.addEventListener('focus', () => searchForm.classList.add('is-active'));
+      searchInput.addEventListener('input', () => searchForm.classList.add('is-active'));
+
+      searchForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const query = searchInput.value.trim();
+        const nextUrl = new URL(window.location.href);
+        if (query) nextUrl.searchParams.set('q', query);
+        else nextUrl.searchParams.delete('q');
+        window.history.replaceState({}, '', nextUrl);
+        showToast('Suche aktualisiert: ' + (query || 'leere Suche'));
+        searchInput.blur();
+        searchForm.classList.remove('is-active');
+      });
+
+      document.addEventListener('click', event => {
+        const target = event.target;
+
+        if (!target.closest('[data-search-form]')) searchForm.classList.remove('is-active');
+        if (!target.closest('[data-popover-panel]') && !target.closest('[data-popover]') && !target.closest(
+            '[data-source-menu]') && !target.closest('[data-result-menu]')) closePopover();
+
+        const clearButton = target.closest('[data-clear-search]');
+        if (clearButton) {
+          searchInput.value = '';
+          searchInput.focus();
+          return;
+        }
+
+        const suggestion = target.closest('[data-suggestion]');
+        if (suggestion) {
+          searchInput.value = suggestion.dataset.suggestion;
+          searchForm.classList.remove('is-active');
+          showToast('Suchvorschlag übernommen');
+          return;
+        }
+
+        const toastAction = target.closest('[data-toast]');
+        if (toastAction && !target.closest('[data-popover-panel] button')) {
+          event.preventDefault();
+          showToast(toastAction.dataset.toast);
+          return;
+        }
+
+        const popoverButton = target.closest('[data-popover]');
+        if (popoverButton) {
+          openNamedPopover(popoverButton.dataset.popover, popoverButton);
+          return;
+        }
+
+        const modalButton = target.closest('[data-modal]');
+        if (modalButton) {
+          event.preventDefault();
+          openInfoModal(modalButton.dataset.modal);
+          closePopover();
+          return;
+        }
+
+        const tabButton = target.closest('[data-tab]');
+        if (tabButton) {
+          document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('is-active'));
+          tabButton.classList.add('is-active');
+          showToast('Tab gewechselt: ' + tabButton.dataset.tab);
+          return;
+        }
+
+        const toggleAi = target.closest('[data-toggle-ai]');
+        if (toggleAi) {
+          const answer = document.querySelector('[data-ai-answer]');
+          const isOpen = answer.classList.toggle('is-open');
+          toggleAi.setAttribute('aria-expanded', String(isOpen));
+          toggleAi.querySelector('span').textContent = isOpen ? 'Weniger anzeigen' : 'Mehr anzeigen';
+          return;
+        }
+
+        const sourceToggle = target.closest('[data-toggle-sources]');
+        if (sourceToggle) {
+          const panel = document.querySelector('[data-source-panel]');
+          const isOpen = panel.classList.toggle('is-open');
+          sourceToggle.setAttribute('aria-expanded', String(isOpen));
+          sourceToggle.textContent = isOpen ? 'Weniger anzeigen' : 'Alle anzeigen';
+          return;
+        }
+
+        const sourceJump = target.closest('[data-source-jump]');
+        if (sourceJump) {
+          const panel = document.querySelector('[data-source-panel]');
+          const sourceToggleButton = document.querySelector('[data-toggle-sources]');
+          panel.classList.add('is-open');
+          sourceToggleButton.setAttribute('aria-expanded', 'true');
+          sourceToggleButton.textContent = 'Weniger anzeigen';
+          const card = document.querySelector(`[data-source-id="${sourceJump.dataset.sourceJump}"]`);
+          if (card) {
+            document.querySelectorAll('.source-card').forEach(item => item.classList.remove('is-active'));
+            card.classList.add('is-active');
+            card.scrollIntoView({
+              behavior: 'smooth',
+              block: 'nearest'
+            });
+            setTimeout(() => card.classList.remove('is-active'), 1800);
+          }
+          return;
+        }
+
+        const sourceMenu = target.closest('[data-source-menu]');
+        if (sourceMenu) {
+          const id = sourceMenu.dataset.sourceMenu;
+          const url = sourceUrls[id] || '#';
+          placePopover(sourceMenu,
+            `<a href="${url}" target="_blank" rel="noopener">Quelle öffnen</a><button data-copy-url="${url}">Link kopieren</button><button data-feedback="source">Feedback zu dieser Quelle</button>`
+            );
+          return;
+        }
+
+        const resultMenu = target.closest('[data-result-menu]');
+        if (resultMenu) {
+          const article = resultMenu.closest('[data-result-url]');
+          const url = article ? article.dataset.resultUrl : window.location.href;
+          const title = article ? (article.querySelector('.result-title')?.textContent || document.title) :
+            document.title;
+          placePopover(resultMenu,
+            `<a href="${url}" target="_blank" rel="noopener">Ergebnis öffnen</a><button data-share-url="${url}" data-share-title="${escapeHtml(title)}">Teilen</button><button data-copy-url="${url}">Link kopieren</button><button data-feedback="result">Problem melden</button>`
+            );
+          return;
+        }
+
+        const copyUrl = target.closest('[data-copy-url]');
+        if (copyUrl) {
+          copyText(copyUrl.dataset.copyUrl);
+          closePopover();
+          return;
+        }
+
+        const shareUrl = target.closest('[data-share-url]');
+        if (shareUrl) {
+          openShareDialog(shareUrl.dataset.shareUrl, shareUrl.dataset.shareTitle || document.title);
+          closePopover();
+          return;
+        }
+
+        const shareButton = target.closest('[data-share]');
+        if (shareButton) {
+          openShareDialog(window.location.href, 'logfile analyse bei Nutzerverhalten');
+          return;
+        }
+
+        const feedbackButton = target.closest('[data-feedback]');
+        if (feedbackButton) {
+          closePopover();
+          openDialog(feedbackDialog);
+          return;
+        }
+
+        const closeButton = target.closest('[data-close-dialog]');
+        if (closeButton) {
+          closeDialogs();
+          return;
+        }
+
+        const submitFeedback = target.closest('[data-submit-feedback]');
+        if (submitFeedback) {
+          closeDialogs();
+          showToast('Danke für dein Feedback');
+          return;
+        }
+
+        const questionButton = target.closest('.question-button');
+        if (questionButton) {
+          const item = questionButton.closest('.question-item');
+          const isOpen = item.classList.toggle('is-open');
+          questionButton.setAttribute('aria-expanded', String(isOpen));
+          return;
+        }
+
+        const originalToggle = target.closest('[data-toggle-original]');
+        if (originalToggle) {
+          const box = originalToggle.closest('[data-translation]');
+          const isOriginal = box.classList.toggle('is-original');
+          originalToggle.textContent = isOriginal ? 'Original ausblenden' : 'Original ansehen';
+          return;
+        }
+
+        const filterValue = target.closest('[data-filter-value]');
+        if (filterValue) {
+          if (activeFilterButton) activeFilterButton.textContent = filterValue.dataset.filterValue + ' ▾';
+          showToast('Filter gesetzt: ' + filterValue.dataset.filterValue);
+          closePopover();
+          return;
+        }
+
+        const tabChoice = target.closest('[data-tab-choice]');
+        if (tabChoice) {
+          showToast('Mehr-Menü: ' + tabChoice.dataset.tabChoice);
+          closePopover();
+          return;
+        }
+
+        const sponsoredToggle = target.closest('[data-toggle-sponsored]');
+        if (sponsoredToggle) {
+          const sponsoredBox = sponsoredToggle.closest('[data-sponsored-results]');
+          const isCollapsed = sponsoredBox.classList.toggle('is-collapsed');
+          sponsoredToggle.setAttribute('aria-expanded', String(!isCollapsed));
+          sponsoredToggle.querySelector('span').textContent = isCollapsed ?
+            'Gesponserte Ergebnisse anzeigen' :
+            'Gesponserte Ergebnisse ausblenden';
+          return;
+        }
+
+        const pageLink = target.closest('[data-page]');
+        if (pageLink) {
+          const selectedPage = pageLink.dataset.page === 'next' ? '2' : pageLink.dataset.page;
+          const pageContent = document.querySelector(`[data-results-page="${selectedPage}"]`);
+          if (!pageContent) {
+            showToast('Seite ' + selectedPage + ' ist in dieser Demo nicht angelegt');
+            return;
+          }
+
+          document.querySelectorAll('[data-results-page]').forEach(page => {
+            page.classList.toggle('hidden', page.dataset.resultsPage !== selectedPage);
+          });
+
+          const aiOverview = document.querySelector('[data-ai-overview]');
+          if (aiOverview) {
+            aiOverview.classList.toggle('hidden', selectedPage !== '1');
+          }
+
+          document.querySelectorAll('.page-link').forEach(btn => {
+            btn.classList.toggle('is-active', btn.dataset.page === selectedPage);
+            if (btn.dataset.page === selectedPage) {
+              btn.setAttribute('aria-current', 'page');
+            } else {
+              btn.removeAttribute('aria-current');
+            }
+          });
+
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          showToast(pageLink.dataset.page === 'next' ? 'Weiter zu Seite 2' : 'Seite ' + selectedPage);
+          return;
+        }
+
+        const locationUpdate = target.closest('[data-location-update]');
+        if (locationUpdate) {
+          const status = document.querySelector('[data-location-status]');
+          status.classList.remove('hidden');
+          status.textContent = 'Standort wird aktualisiert...';
+          setTimeout(() => {
+            status.textContent = 'Standort konnte nicht aktualisiert werden';
+          }, 900);
+          return;
+        }
+      });
+
+      popover.addEventListener('click', event => {
+        const toastAction = event.target.closest('[data-toast]');
+        if (toastAction) {
+          showToast(toastAction.dataset.toast);
+          closePopover();
+        }
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closePopover();
+          closeDialogs();
+          searchForm.classList.remove('is-active');
+        }
+        if (event.key === '/' && document.activeElement !== searchInput && !['INPUT', 'TEXTAREA'].includes(document
+            .activeElement.tagName)) {
+          event.preventDefault();
+          searchInput.focus();
+        }
+      });
+
+      document.querySelectorAll('.filter-button[data-popover]').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('is-open'));
+          button.classList.add('is-open');
+          activeFilterButton = button;
+        });
+      });
+
+      const askBox = document.querySelector('[data-ask-box]');
+      const askInput = document.querySelector('[data-ask-input]');
+      const askSend = document.querySelector('[data-ask-send]');
+
+      if (askBox && askInput && askSend) {
+        askInput.addEventListener('focus', () => askBox.classList.add('is-focus'));
+        askInput.addEventListener('blur', () => askBox.classList.remove('is-focus'));
+        askInput.addEventListener('input', () => {
+          askInput.style.height = 'auto';
+          askInput.style.height = Math.min(askInput.scrollHeight, 160) + 'px';
+          askSend.disabled = !askInput.value.trim();
+        });
+
+        askSend.addEventListener('click', () => {
+          const value = askInput.value.trim();
+          if (!value) return;
+          askInput.value = '';
+          askInput.style.height = 'auto';
+          askSend.disabled = true;
+          showToast('Frage gesendet');
+        });
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>'"]/g, char => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        } [char]));
+      }
+    </script>
+</body>
+
+</html>
